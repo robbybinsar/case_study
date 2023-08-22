@@ -8,6 +8,8 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -34,17 +36,25 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/Agropalma_Area_Plantio_1.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
+        <script src="data/Plantedareas_1.js"></script>
         <script src="data/HCV5_Drenagem_Buffer5KM_2.js"></script>
         <script src="data/HCV5_Drenagem__Rios_Buffer5KM_3.js"></script>
-        <script src="data/Agropalma_Area_Reseva_4.js"></script>
-        <script src="data/Limite_de_concesso_shp_5.js"></script>
+        <script src="data/HCV1HCV3HCV4_4.js"></script>
+        <script src="data/Concessionboundary_5.js"></script>
         <script src="data/Concessionboundary_CP2_6.js"></script>
         <script src="data/Locationofcommunities_7.js"></script>
         <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-3.2462958420879318,-49.87050543863156],[-1.9247713122177288,-47.443777358483]]);
+        }).fitBounds([[-2.848423006202317,-49.268523249400864],[-2.163188064788151,-47.982688039396]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -76,54 +86,24 @@
         });
         layer_ESRIWorldImagery_0;
         map.addLayer(layer_ESRIWorldImagery_0);
-        function pop_Agropalma_Area_Plantio_1(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Empresa'] !== null ? autolinker.link(feature.properties['Empresa'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Municipio'] !== null ? autolinker.link(feature.properties['Municipio'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Tipo_Propr'] !== null ? autolinker.link(feature.properties['Tipo_Propr'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Proprietar'] !== null ? autolinker.link(feature.properties['Proprietar'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['N_UP'] !== null ? autolinker.link(feature.properties['N_UP'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Lat'] !== null ? autolinker.link(feature.properties['Lat'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Long_'] !== null ? autolinker.link(feature.properties['Long_'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Fonte'] !== null ? autolinker.link(feature.properties['Fonte'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Data'] !== null ? autolinker.link(feature.properties['Data'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SHAPE_Leng'] !== null ? autolinker.link(feature.properties['SHAPE_Leng'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+        function pop_Plantedareas_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
         }
 
-        function style_Agropalma_Area_Plantio_1_0() {
+        function style_Plantedareas_1_0() {
             return {
-                pane: 'pane_Agropalma_Area_Plantio_1',
+                pane: 'pane_Plantedareas_1',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -136,42 +116,33 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Agropalma_Area_Plantio_1');
-        map.getPane('pane_Agropalma_Area_Plantio_1').style.zIndex = 401;
-        map.getPane('pane_Agropalma_Area_Plantio_1').style['mix-blend-mode'] = 'normal';
-        var layer_Agropalma_Area_Plantio_1 = new L.geoJson(json_Agropalma_Area_Plantio_1, {
+        map.createPane('pane_Plantedareas_1');
+        map.getPane('pane_Plantedareas_1').style.zIndex = 401;
+        map.getPane('pane_Plantedareas_1').style['mix-blend-mode'] = 'normal';
+        var layer_Plantedareas_1 = new L.geoJson(json_Plantedareas_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Agropalma_Area_Plantio_1',
-            layerName: 'layer_Agropalma_Area_Plantio_1',
-            pane: 'pane_Agropalma_Area_Plantio_1',
-            onEachFeature: pop_Agropalma_Area_Plantio_1,
-            style: style_Agropalma_Area_Plantio_1_0,
+            dataVar: 'json_Plantedareas_1',
+            layerName: 'layer_Plantedareas_1',
+            pane: 'pane_Plantedareas_1',
+            onEachFeature: pop_Plantedareas_1,
+            style: style_Plantedareas_1_0,
         });
-        bounds_group.addLayer(layer_Agropalma_Area_Plantio_1);
-        map.addLayer(layer_Agropalma_Area_Plantio_1);
+        bounds_group.addLayer(layer_Plantedareas_1);
+        map.addLayer(layer_Plantedareas_1);
         function pop_HCV5_Drenagem_Buffer5KM_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['NOME'] !== null ? autolinker.link(feature.properties['NOME'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['LEGENDA'] !== null ? autolinker.link(feature.properties['LEGENDA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Nome_2'] !== null ? autolinker.link(feature.properties['Nome_2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
         }
 
         function style_HCV5_Drenagem_Buffer5KM_2_0() {
@@ -202,27 +173,18 @@
         bounds_group.addLayer(layer_HCV5_Drenagem_Buffer5KM_2);
         map.addLayer(layer_HCV5_Drenagem_Buffer5KM_2);
         function pop_HCV5_Drenagem__Rios_Buffer5KM_3(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Nome'] !== null ? autolinker.link(feature.properties['Nome'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['LEGENDA'] !== null ? autolinker.link(feature.properties['LEGENDA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Nome_2'] !== null ? autolinker.link(feature.properties['Nome_2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
         }
 
         function style_HCV5_Drenagem__Rios_Buffer5KM_3_0() {
@@ -254,53 +216,35 @@
         });
         bounds_group.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_3);
         map.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_3);
-        function pop_Agropalma_Area_Reseva_4(feature, layer) {
+        function pop_HCV1HCV3HCV4_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Propriedad'] !== null ? autolinker.link(feature.properties['Propriedad'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Municipio'] !== null ? autolinker.link(feature.properties['Municipio'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['HCV'] !== null ? autolinker.link(feature.properties['HCV'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>HCV</strong><br />' + (feature.properties['HCV'] !== null ? autolinker.link(feature.properties['HCV'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['HCS'] !== null ? autolinker.link(feature.properties['HCS'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Area_ha'] !== null ? autolinker.link(feature.properties['Area_ha'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Area_m2'] !== null ? autolinker.link(feature.properties['Area_m2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Perimetro_'] !== null ? autolinker.link(feature.properties['Perimetro_'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Fonte_dado'] !== null ? autolinker.link(feature.properties['Fonte_dado'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Data_arqui'] !== null ? autolinker.link(feature.properties['Data_arqui'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Agropalma_Area_Reseva_4_0(feature) {
+        function style_HCV1HCV3HCV4_4_0(feature) {
             switch(String(feature.properties['HCV'])) {
                 case 'HCV1, HCV3':
                     return {
-                pane: 'pane_Agropalma_Area_Reseva_4',
+                pane: 'pane_HCV1HCV3HCV4_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -315,7 +259,7 @@
                     break;
                 case 'HCV1, HCV3, HCV4':
                     return {
-                pane: 'pane_Agropalma_Area_Reseva_4',
+                pane: 'pane_HCV1HCV3HCV4_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -324,44 +268,44 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(12,128,211,1.0)',
+                fillColor: 'rgba(46,93,221,1.0)',
                 interactive: true,
             }
                     break;
             }
         }
-        map.createPane('pane_Agropalma_Area_Reseva_4');
-        map.getPane('pane_Agropalma_Area_Reseva_4').style.zIndex = 404;
-        map.getPane('pane_Agropalma_Area_Reseva_4').style['mix-blend-mode'] = 'normal';
-        var layer_Agropalma_Area_Reseva_4 = new L.geoJson(json_Agropalma_Area_Reseva_4, {
+        map.createPane('pane_HCV1HCV3HCV4_4');
+        map.getPane('pane_HCV1HCV3HCV4_4').style.zIndex = 404;
+        map.getPane('pane_HCV1HCV3HCV4_4').style['mix-blend-mode'] = 'normal';
+        var layer_HCV1HCV3HCV4_4 = new L.geoJson(json_HCV1HCV3HCV4_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Agropalma_Area_Reseva_4',
-            layerName: 'layer_Agropalma_Area_Reseva_4',
-            pane: 'pane_Agropalma_Area_Reseva_4',
-            onEachFeature: pop_Agropalma_Area_Reseva_4,
-            style: style_Agropalma_Area_Reseva_4_0,
+            dataVar: 'json_HCV1HCV3HCV4_4',
+            layerName: 'layer_HCV1HCV3HCV4_4',
+            pane: 'pane_HCV1HCV3HCV4_4',
+            onEachFeature: pop_HCV1HCV3HCV4_4,
+            style: style_HCV1HCV3HCV4_4_0,
         });
-        bounds_group.addLayer(layer_Agropalma_Area_Reseva_4);
-        map.addLayer(layer_Agropalma_Area_Reseva_4);
-        function pop_Limite_de_concesso_shp_5(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['codigo'] !== null ? autolinker.link(feature.properties['codigo'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['nome'] !== null ? autolinker.link(feature.properties['nome'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+        bounds_group.addLayer(layer_HCV1HCV3HCV4_4);
+        map.addLayer(layer_HCV1HCV3HCV4_4);
+        function pop_Concessionboundary_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
         }
 
-        function style_Limite_de_concesso_shp_5_0() {
+        function style_Concessionboundary_5_0() {
             return {
-                pane: 'pane_Limite_de_concesso_shp_5',
+                pane: 'pane_Concessionboundary_5',
                 opacity: 1,
                 color: 'rgba(228,26,28,1.0)',
                 dashArray: '',
@@ -372,33 +316,33 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Limite_de_concesso_shp_5');
-        map.getPane('pane_Limite_de_concesso_shp_5').style.zIndex = 405;
-        map.getPane('pane_Limite_de_concesso_shp_5').style['mix-blend-mode'] = 'normal';
-        var layer_Limite_de_concesso_shp_5 = new L.geoJson(json_Limite_de_concesso_shp_5, {
+        map.createPane('pane_Concessionboundary_5');
+        map.getPane('pane_Concessionboundary_5').style.zIndex = 405;
+        map.getPane('pane_Concessionboundary_5').style['mix-blend-mode'] = 'normal';
+        var layer_Concessionboundary_5 = new L.geoJson(json_Concessionboundary_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Limite_de_concesso_shp_5',
-            layerName: 'layer_Limite_de_concesso_shp_5',
-            pane: 'pane_Limite_de_concesso_shp_5',
-            onEachFeature: pop_Limite_de_concesso_shp_5,
-            style: style_Limite_de_concesso_shp_5_0,
+            dataVar: 'json_Concessionboundary_5',
+            layerName: 'layer_Concessionboundary_5',
+            pane: 'pane_Concessionboundary_5',
+            onEachFeature: pop_Concessionboundary_5,
+            style: style_Concessionboundary_5_0,
         });
-        bounds_group.addLayer(layer_Limite_de_concesso_shp_5);
-        map.addLayer(layer_Limite_de_concesso_shp_5);
+        bounds_group.addLayer(layer_Concessionboundary_5);
+        map.addLayer(layer_Concessionboundary_5);
         function pop_Concessionboundary_CP2_6(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['codigo'] !== null ? autolinker.link(feature.properties['codigo'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['nome'] !== null ? autolinker.link(feature.properties['nome'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
         }
 
         function style_Concessionboundary_CP2_6_0() {
@@ -429,39 +373,21 @@
         bounds_group.addLayer(layer_Concessionboundary_CP2_6);
         map.addLayer(layer_Concessionboundary_CP2_6);
         function pop_Locationofcommunities_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['altitudeMo'] !== null ? autolinker.link(feature.properties['altitudeMo'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -514,8 +440,148 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Locationofcommunities_7.png" /> Location of communities': layer_Locationofcommunities_7,'<img src="legend/Concessionboundary_CP2_6.png" /> Concession boundary_CP2': layer_Concessionboundary_CP2_6,'<img src="legend/Limite_de_concesso_shp_5.png" /> Limite_de_concessão_shp': layer_Limite_de_concesso_shp_5,'Agropalma_Area_Reseva<br /><table><tr><td style="text-align: center;"><img src="legend/Agropalma_Area_Reseva_4_HCV1HCV30.png" /></td><td>HCV1, HCV3</td></tr><tr><td style="text-align: center;"><img src="legend/Agropalma_Area_Reseva_4_HCV1HCV3HCV41.png" /></td><td>HCV1, HCV3, HCV4</td></tr></table>': layer_Agropalma_Area_Reseva_4,'<img src="legend/HCV5_Drenagem__Rios_Buffer5KM_3.png" /> HCV5_Drenagem__Rios_Buffer5KM': layer_HCV5_Drenagem__Rios_Buffer5KM_3,'<img src="legend/HCV5_Drenagem_Buffer5KM_2.png" /> HCV5_Drenagem_Buffer5KM': layer_HCV5_Drenagem_Buffer5KM_2,'<img src="legend/Agropalma_Area_Plantio_1.png" /> Agropalma_Area_Plantio': layer_Agropalma_Area_Plantio_1,"ESRI World Imagery": layer_ESRIWorldImagery_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Locationofcommunities_7.png" /> Location of communities': layer_Locationofcommunities_7,'<img src="legend/Concessionboundary_CP2_6.png" /> Concession boundary_CP2': layer_Concessionboundary_CP2_6,'<img src="legend/Concessionboundary_5.png" /> Concession boundary': layer_Concessionboundary_5,'HCV 1, HCV 3, HCV 4<br /><table><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_4_HCV1HCV30.png" /></td><td>HCV1, HCV3</td></tr><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_4_HCV1HCV3HCV41.png" /></td><td>HCV1, HCV3, HCV4</td></tr></table>': layer_HCV1HCV3HCV4_4,'<img src="legend/HCV5_Drenagem__Rios_Buffer5KM_3.png" /> HCV5_Drenagem__Rios_Buffer5KM': layer_HCV5_Drenagem__Rios_Buffer5KM_3,'<img src="legend/HCV5_Drenagem_Buffer5KM_2.png" /> HCV5_Drenagem_Buffer5KM': layer_HCV5_Drenagem_Buffer5KM_2,'<img src="legend/Plantedareas_1.png" /> Planted areas': layer_Plantedareas_1,"ESRI World Imagery": layer_ESRIWorldImagery_0,},{collapsed:false}).addTo(map);
         setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"HCV": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_HCV = document.createElement('div');
+            div_HCV.id = "div_HCV";
+            div_HCV.className= "filterselect";
+            document.getElementById("menu").appendChild(div_HCV);
+            sel_HCV = document.createElement('select');
+            sel_HCV.multiple = true;
+            sel_HCV.size = 2;
+            sel_HCV.id = "sel_HCV";
+            var HCV_options_str = "<option value='' unselected></option>";
+            sel_HCV.onchange = function(){filterFunc()};
+            HCV_options_str  += '<option value="HCV1, HCV3">HCV1, HCV3</option>';
+            HCV_options_str  += '<option value="HCV1, HCV3, HCV4">HCV1, HCV3, HCV4</option>';
+            sel_HCV.innerHTML = HCV_options_str;
+            div_HCV.appendChild(sel_HCV);
+            var lab_HCV = document.createElement('div');
+            lab_HCV.innerHTML = 'HCV';
+            lab_HCV.className = 'filterlabel';
+            div_HCV.appendChild(lab_HCV);
+            var reset_HCV = document.createElement('div');
+            reset_HCV.innerHTML = 'clear filter';
+            reset_HCV.className = 'filterlabel';
+            reset_HCV.onclick = function() {
+                var options = document.getElementById("sel_HCV").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_HCV.appendChild(reset_HCV);
         </script>
     </body>
 </html>
