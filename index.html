@@ -39,22 +39,18 @@
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
-        <script src="data/Plantedareas_1.js"></script>
-        <script src="data/HCV5_Drenagem_Buffer5KM_2.js"></script>
-        <script src="data/HCV5_Drenagem__Rios_Buffer5KM_3.js"></script>
-        <script src="data/HCV1HCV3HCV4_4.js"></script>
-        <script src="data/Concessionboundary_5.js"></script>
+        <script src="data/AmazonBiome_1.js"></script>
+        <script src="data/Plantedareas_2.js"></script>
+        <script src="data/HCV5_Drenagem_Buffer5KM_3.js"></script>
+        <script src="data/HCV5_Drenagem__Rios_Buffer5KM_4.js"></script>
+        <script src="data/HCV1HCV3HCV4_5.js"></script>
         <script src="data/Concessionboundary_CP2_6.js"></script>
-        <script src="data/Locationofcommunities_7.js"></script>
+        <script src="data/Concessionboundary_7.js"></script>
+        <script src="data/Locationofcommunities_8.js"></script>
         <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-            highlightLayer.openPopup();
-        }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-2.848423006202317,-49.268523249400864],[-2.163188064788151,-47.982688039396]]);
+        }).fitBounds([[-2.812733686336993,-49.32052768691881],[-2.1274987449228275,-48.034692476913946]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -86,24 +82,48 @@
         });
         layer_ESRIWorldImagery_0;
         map.addLayer(layer_ESRIWorldImagery_0);
-        function pop_Plantedareas_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
+        function pop_AmazonBiome_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Plantedareas_1_0() {
+        function style_AmazonBiome_1_0() {
             return {
-                pane: 'pane_Plantedareas_1',
+                pane: 'pane_AmazonBiome_1',
+                opacity: 1,
+                color: 'rgba(77,175,74,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_AmazonBiome_1');
+        map.getPane('pane_AmazonBiome_1').style.zIndex = 401;
+        map.getPane('pane_AmazonBiome_1').style['mix-blend-mode'] = 'normal';
+        var layer_AmazonBiome_1 = new L.geoJson(json_AmazonBiome_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AmazonBiome_1',
+            layerName: 'layer_AmazonBiome_1',
+            pane: 'pane_AmazonBiome_1',
+            onEachFeature: pop_AmazonBiome_1,
+            style: style_AmazonBiome_1_0,
+        });
+        bounds_group.addLayer(layer_AmazonBiome_1);
+        map.addLayer(layer_AmazonBiome_1);
+        function pop_Plantedareas_2(feature, layer) {
+        }
+
+        function style_Plantedareas_2_0() {
+            return {
+                pane: 'pane_Plantedareas_2',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -116,38 +136,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Plantedareas_1');
-        map.getPane('pane_Plantedareas_1').style.zIndex = 401;
-        map.getPane('pane_Plantedareas_1').style['mix-blend-mode'] = 'normal';
-        var layer_Plantedareas_1 = new L.geoJson(json_Plantedareas_1, {
+        map.createPane('pane_Plantedareas_2');
+        map.getPane('pane_Plantedareas_2').style.zIndex = 402;
+        map.getPane('pane_Plantedareas_2').style['mix-blend-mode'] = 'normal';
+        var layer_Plantedareas_2 = new L.geoJson(json_Plantedareas_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Plantedareas_1',
-            layerName: 'layer_Plantedareas_1',
-            pane: 'pane_Plantedareas_1',
-            onEachFeature: pop_Plantedareas_1,
-            style: style_Plantedareas_1_0,
+            dataVar: 'json_Plantedareas_2',
+            layerName: 'layer_Plantedareas_2',
+            pane: 'pane_Plantedareas_2',
+            onEachFeature: pop_Plantedareas_2,
+            style: style_Plantedareas_2_0,
         });
-        bounds_group.addLayer(layer_Plantedareas_1);
-        map.addLayer(layer_Plantedareas_1);
-        function pop_HCV5_Drenagem_Buffer5KM_2(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
+        bounds_group.addLayer(layer_Plantedareas_2);
+        map.addLayer(layer_Plantedareas_2);
+        function pop_HCV5_Drenagem_Buffer5KM_3(feature, layer) {
         }
 
-        function style_HCV5_Drenagem_Buffer5KM_2_0() {
+        function style_HCV5_Drenagem_Buffer5KM_3_0() {
             return {
-                pane: 'pane_HCV5_Drenagem_Buffer5KM_2',
+                pane: 'pane_HCV5_Drenagem_Buffer5KM_3',
                 opacity: 1,
                 color: 'rgba(152,125,183,1.0)',
                 dashArray: '',
@@ -158,38 +166,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_HCV5_Drenagem_Buffer5KM_2');
-        map.getPane('pane_HCV5_Drenagem_Buffer5KM_2').style.zIndex = 402;
-        map.getPane('pane_HCV5_Drenagem_Buffer5KM_2').style['mix-blend-mode'] = 'normal';
-        var layer_HCV5_Drenagem_Buffer5KM_2 = new L.geoJson(json_HCV5_Drenagem_Buffer5KM_2, {
+        map.createPane('pane_HCV5_Drenagem_Buffer5KM_3');
+        map.getPane('pane_HCV5_Drenagem_Buffer5KM_3').style.zIndex = 403;
+        map.getPane('pane_HCV5_Drenagem_Buffer5KM_3').style['mix-blend-mode'] = 'normal';
+        var layer_HCV5_Drenagem_Buffer5KM_3 = new L.geoJson(json_HCV5_Drenagem_Buffer5KM_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HCV5_Drenagem_Buffer5KM_2',
-            layerName: 'layer_HCV5_Drenagem_Buffer5KM_2',
-            pane: 'pane_HCV5_Drenagem_Buffer5KM_2',
-            onEachFeature: pop_HCV5_Drenagem_Buffer5KM_2,
-            style: style_HCV5_Drenagem_Buffer5KM_2_0,
+            dataVar: 'json_HCV5_Drenagem_Buffer5KM_3',
+            layerName: 'layer_HCV5_Drenagem_Buffer5KM_3',
+            pane: 'pane_HCV5_Drenagem_Buffer5KM_3',
+            onEachFeature: pop_HCV5_Drenagem_Buffer5KM_3,
+            style: style_HCV5_Drenagem_Buffer5KM_3_0,
         });
-        bounds_group.addLayer(layer_HCV5_Drenagem_Buffer5KM_2);
-        map.addLayer(layer_HCV5_Drenagem_Buffer5KM_2);
-        function pop_HCV5_Drenagem__Rios_Buffer5KM_3(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
+        bounds_group.addLayer(layer_HCV5_Drenagem_Buffer5KM_3);
+        map.addLayer(layer_HCV5_Drenagem_Buffer5KM_3);
+        function pop_HCV5_Drenagem__Rios_Buffer5KM_4(feature, layer) {
         }
 
-        function style_HCV5_Drenagem__Rios_Buffer5KM_3_0() {
+        function style_HCV5_Drenagem__Rios_Buffer5KM_4_0() {
             return {
-                pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_3',
+                pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_4',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -202,49 +198,37 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_HCV5_Drenagem__Rios_Buffer5KM_3');
-        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_3').style.zIndex = 403;
-        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_3').style['mix-blend-mode'] = 'normal';
-        var layer_HCV5_Drenagem__Rios_Buffer5KM_3 = new L.geoJson(json_HCV5_Drenagem__Rios_Buffer5KM_3, {
+        map.createPane('pane_HCV5_Drenagem__Rios_Buffer5KM_4');
+        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_4').style.zIndex = 404;
+        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_4').style['mix-blend-mode'] = 'normal';
+        var layer_HCV5_Drenagem__Rios_Buffer5KM_4 = new L.geoJson(json_HCV5_Drenagem__Rios_Buffer5KM_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HCV5_Drenagem__Rios_Buffer5KM_3',
-            layerName: 'layer_HCV5_Drenagem__Rios_Buffer5KM_3',
-            pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_3',
-            onEachFeature: pop_HCV5_Drenagem__Rios_Buffer5KM_3,
-            style: style_HCV5_Drenagem__Rios_Buffer5KM_3_0,
+            dataVar: 'json_HCV5_Drenagem__Rios_Buffer5KM_4',
+            layerName: 'layer_HCV5_Drenagem__Rios_Buffer5KM_4',
+            pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_4',
+            onEachFeature: pop_HCV5_Drenagem__Rios_Buffer5KM_4,
+            style: style_HCV5_Drenagem__Rios_Buffer5KM_4_0,
         });
-        bounds_group.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_3);
-        map.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_3);
-        function pop_HCV1HCV3HCV4_4(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
+        bounds_group.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_4);
+        map.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_4);
+        function pop_HCV1HCV3HCV4_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>HCV</strong><br />' + (feature.properties['HCV'] !== null ? autolinker.link(feature.properties['HCV'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['HCS'] !== null ? autolinker.link(feature.properties['HCS'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>HCS</strong><br />' + (feature.properties['HCS'] !== null ? autolinker.link(feature.properties['HCS'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_HCV1HCV3HCV4_4_0(feature) {
+        function style_HCV1HCV3HCV4_5_0(feature) {
             switch(String(feature.properties['HCV'])) {
                 case 'HCV1, HCV3':
                     return {
-                pane: 'pane_HCV1HCV3HCV4_4',
+                pane: 'pane_HCV1HCV3HCV4_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -259,7 +243,7 @@
                     break;
                 case 'HCV1, HCV3, HCV4':
                     return {
-                pane: 'pane_HCV1HCV3HCV4_4',
+                pane: 'pane_HCV1HCV3HCV4_5',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -274,75 +258,21 @@
                     break;
             }
         }
-        map.createPane('pane_HCV1HCV3HCV4_4');
-        map.getPane('pane_HCV1HCV3HCV4_4').style.zIndex = 404;
-        map.getPane('pane_HCV1HCV3HCV4_4').style['mix-blend-mode'] = 'normal';
-        var layer_HCV1HCV3HCV4_4 = new L.geoJson(json_HCV1HCV3HCV4_4, {
+        map.createPane('pane_HCV1HCV3HCV4_5');
+        map.getPane('pane_HCV1HCV3HCV4_5').style.zIndex = 405;
+        map.getPane('pane_HCV1HCV3HCV4_5').style['mix-blend-mode'] = 'normal';
+        var layer_HCV1HCV3HCV4_5 = new L.geoJson(json_HCV1HCV3HCV4_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HCV1HCV3HCV4_4',
-            layerName: 'layer_HCV1HCV3HCV4_4',
-            pane: 'pane_HCV1HCV3HCV4_4',
-            onEachFeature: pop_HCV1HCV3HCV4_4,
-            style: style_HCV1HCV3HCV4_4_0,
+            dataVar: 'json_HCV1HCV3HCV4_5',
+            layerName: 'layer_HCV1HCV3HCV4_5',
+            pane: 'pane_HCV1HCV3HCV4_5',
+            onEachFeature: pop_HCV1HCV3HCV4_5,
+            style: style_HCV1HCV3HCV4_5_0,
         });
-        bounds_group.addLayer(layer_HCV1HCV3HCV4_4);
-        map.addLayer(layer_HCV1HCV3HCV4_4);
-        function pop_Concessionboundary_5(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-        }
-
-        function style_Concessionboundary_5_0() {
-            return {
-                pane: 'pane_Concessionboundary_5',
-                opacity: 1,
-                color: 'rgba(228,26,28,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Concessionboundary_5');
-        map.getPane('pane_Concessionboundary_5').style.zIndex = 405;
-        map.getPane('pane_Concessionboundary_5').style['mix-blend-mode'] = 'normal';
-        var layer_Concessionboundary_5 = new L.geoJson(json_Concessionboundary_5, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Concessionboundary_5',
-            layerName: 'layer_Concessionboundary_5',
-            pane: 'pane_Concessionboundary_5',
-            onEachFeature: pop_Concessionboundary_5,
-            style: style_Concessionboundary_5_0,
-        });
-        bounds_group.addLayer(layer_Concessionboundary_5);
-        map.addLayer(layer_Concessionboundary_5);
+        bounds_group.addLayer(layer_HCV1HCV3HCV4_5);
+        map.addLayer(layer_HCV1HCV3HCV4_5);
         function pop_Concessionboundary_CP2_6(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
         }
 
         function style_Concessionboundary_CP2_6_0() {
@@ -372,19 +302,37 @@
         });
         bounds_group.addLayer(layer_Concessionboundary_CP2_6);
         map.addLayer(layer_Concessionboundary_CP2_6);
-        function pop_Locationofcommunities_7(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
+        function pop_Concessionboundary_7(feature, layer) {
+        }
+
+        function style_Concessionboundary_7_0() {
+            return {
+                pane: 'pane_Concessionboundary_7',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Concessionboundary_7');
+        map.getPane('pane_Concessionboundary_7').style.zIndex = 407;
+        map.getPane('pane_Concessionboundary_7').style['mix-blend-mode'] = 'normal';
+        var layer_Concessionboundary_7 = new L.geoJson(json_Concessionboundary_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Concessionboundary_7',
+            layerName: 'layer_Concessionboundary_7',
+            pane: 'pane_Concessionboundary_7',
+            onEachFeature: pop_Concessionboundary_7,
+            style: style_Concessionboundary_7_0,
+        });
+        bounds_group.addLayer(layer_Concessionboundary_7);
+        map.addLayer(layer_Concessionboundary_7);
+        function pop_Locationofcommunities_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
@@ -393,9 +341,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Locationofcommunities_7_0() {
+        function style_Locationofcommunities_8_0() {
             return {
-                pane: 'pane_Locationofcommunities_7',
+                pane: 'pane_Locationofcommunities_8',
                 radius: 4.8,
                 opacity: 1,
                 color: 'rgba(128,17,25,1.0)',
@@ -409,26 +357,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Locationofcommunities_7');
-        map.getPane('pane_Locationofcommunities_7').style.zIndex = 407;
-        map.getPane('pane_Locationofcommunities_7').style['mix-blend-mode'] = 'normal';
-        var layer_Locationofcommunities_7 = new L.geoJson(json_Locationofcommunities_7, {
+        map.createPane('pane_Locationofcommunities_8');
+        map.getPane('pane_Locationofcommunities_8').style.zIndex = 408;
+        map.getPane('pane_Locationofcommunities_8').style['mix-blend-mode'] = 'normal';
+        var layer_Locationofcommunities_8 = new L.geoJson(json_Locationofcommunities_8, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Locationofcommunities_7',
-            layerName: 'layer_Locationofcommunities_7',
-            pane: 'pane_Locationofcommunities_7',
-            onEachFeature: pop_Locationofcommunities_7,
+            dataVar: 'json_Locationofcommunities_8',
+            layerName: 'layer_Locationofcommunities_8',
+            pane: 'pane_Locationofcommunities_8',
+            onEachFeature: pop_Locationofcommunities_8,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Locationofcommunities_7_0(feature));
+                return L.circleMarker(latlng, style_Locationofcommunities_8_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Locationofcommunities_7);
-        map.addLayer(layer_Locationofcommunities_7);
+        bounds_group.addLayer(layer_Locationofcommunities_8);
+        map.addLayer(layer_Locationofcommunities_8);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -440,7 +388,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Locationofcommunities_7.png" /> Location of communities': layer_Locationofcommunities_7,'<img src="legend/Concessionboundary_CP2_6.png" /> Concession boundary_CP2': layer_Concessionboundary_CP2_6,'<img src="legend/Concessionboundary_5.png" /> Concession boundary': layer_Concessionboundary_5,'HCV 1, HCV 3, HCV 4<br /><table><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_4_HCV1HCV30.png" /></td><td>HCV1, HCV3</td></tr><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_4_HCV1HCV3HCV41.png" /></td><td>HCV1, HCV3, HCV4</td></tr></table>': layer_HCV1HCV3HCV4_4,'<img src="legend/HCV5_Drenagem__Rios_Buffer5KM_3.png" /> HCV5_Drenagem__Rios_Buffer5KM': layer_HCV5_Drenagem__Rios_Buffer5KM_3,'<img src="legend/HCV5_Drenagem_Buffer5KM_2.png" /> HCV5_Drenagem_Buffer5KM': layer_HCV5_Drenagem_Buffer5KM_2,'<img src="legend/Plantedareas_1.png" /> Planted areas': layer_Plantedareas_1,"ESRI World Imagery": layer_ESRIWorldImagery_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Locationofcommunities_8.png" /> Location of communities': layer_Locationofcommunities_8,'<img src="legend/Concessionboundary_7.png" /> Concession boundary': layer_Concessionboundary_7,'<img src="legend/Concessionboundary_CP2_6.png" /> Concession boundary_CP2': layer_Concessionboundary_CP2_6,'HCV 1, HCV 3, HCV 4<br /><table><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_5_HCV1HCV30.png" /></td><td>HCV1, HCV3</td></tr><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_5_HCV1HCV3HCV41.png" /></td><td>HCV1, HCV3, HCV4</td></tr></table>': layer_HCV1HCV3HCV4_5,'<img src="legend/HCV5_Drenagem__Rios_Buffer5KM_4.png" /> HCV5_Drenagem__Rios_Buffer5KM': layer_HCV5_Drenagem__Rios_Buffer5KM_4,'<img src="legend/HCV5_Drenagem_Buffer5KM_3.png" /> HCV5_Drenagem_Buffer5KM': layer_HCV5_Drenagem_Buffer5KM_3,'<img src="legend/Plantedareas_2.png" /> Planted areas': layer_Plantedareas_2,'<img src="legend/AmazonBiome_1.png" /> Amazon Biome': layer_AmazonBiome_1,"ESRI World Imagery": layer_ESRIWorldImagery_0,},{collapsed:false}).addTo(map);
         setBounds();
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
