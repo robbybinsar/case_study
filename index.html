@@ -8,8 +8,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -36,21 +34,17 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
-        <script src="data/AmazonBiome_1.js"></script>
-        <script src="data/Plantedareas_2.js"></script>
-        <script src="data/HCV5_Drenagem_Buffer5KM_3.js"></script>
-        <script src="data/HCV5_Drenagem__Rios_Buffer5KM_4.js"></script>
-        <script src="data/HCV1HCV3HCV4_5.js"></script>
-        <script src="data/Concessionboundary_CP2_6.js"></script>
-        <script src="data/Concessionboundary_7.js"></script>
-        <script src="data/Locationofcommunities_8.js"></script>
+        <script src="data/Plantedareas_0.js"></script>
+        <script src="data/HCV5_Drenagem_Buffer5KM_1.js"></script>
+        <script src="data/HCV5_Drenagem__Rios_Buffer5KM_2.js"></script>
+        <script src="data/HCV1HCV3HCV4_3.js"></script>
+        <script src="data/Concessionboundary_CP2_4.js"></script>
+        <script src="data/Concessionboundary_5.js"></script>
+        <script src="data/Locationofcommunities_6.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-2.812733686336993,-49.32052768691881],[-2.1274987449228275,-48.034692476913946]]);
+        }).fitBounds([[-2.8657578187083272,-49.254247521454644],[-2.1805228772941616,-47.96841231144978]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -69,61 +63,12 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        map.createPane('pane_ESRIWorldImagery_0');
-        map.getPane('pane_ESRIWorldImagery_0').style.zIndex = 400;
-        var layer_ESRIWorldImagery_0 = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            pane: 'pane_ESRIWorldImagery_0',
-            opacity: 1.0,
-            attribution: '',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 18
-        });
-        layer_ESRIWorldImagery_0;
-        map.addLayer(layer_ESRIWorldImagery_0);
-        function pop_AmazonBiome_1(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+        function pop_Plantedareas_0(feature, layer) {
         }
 
-        function style_AmazonBiome_1_0() {
+        function style_Plantedareas_0_0() {
             return {
-                pane: 'pane_AmazonBiome_1',
-                opacity: 1,
-                color: 'rgba(77,175,74,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 4.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        map.createPane('pane_AmazonBiome_1');
-        map.getPane('pane_AmazonBiome_1').style.zIndex = 401;
-        map.getPane('pane_AmazonBiome_1').style['mix-blend-mode'] = 'normal';
-        var layer_AmazonBiome_1 = new L.geoJson(json_AmazonBiome_1, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_AmazonBiome_1',
-            layerName: 'layer_AmazonBiome_1',
-            pane: 'pane_AmazonBiome_1',
-            onEachFeature: pop_AmazonBiome_1,
-            style: style_AmazonBiome_1_0,
-        });
-        bounds_group.addLayer(layer_AmazonBiome_1);
-        map.addLayer(layer_AmazonBiome_1);
-        function pop_Plantedareas_2(feature, layer) {
-        }
-
-        function style_Plantedareas_2_0() {
-            return {
-                pane: 'pane_Plantedareas_2',
+                pane: 'pane_Plantedareas_0',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -136,26 +81,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Plantedareas_2');
-        map.getPane('pane_Plantedareas_2').style.zIndex = 402;
-        map.getPane('pane_Plantedareas_2').style['mix-blend-mode'] = 'normal';
-        var layer_Plantedareas_2 = new L.geoJson(json_Plantedareas_2, {
+        map.createPane('pane_Plantedareas_0');
+        map.getPane('pane_Plantedareas_0').style.zIndex = 400;
+        map.getPane('pane_Plantedareas_0').style['mix-blend-mode'] = 'normal';
+        var layer_Plantedareas_0 = new L.geoJson(json_Plantedareas_0, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Plantedareas_2',
-            layerName: 'layer_Plantedareas_2',
-            pane: 'pane_Plantedareas_2',
-            onEachFeature: pop_Plantedareas_2,
-            style: style_Plantedareas_2_0,
+            dataVar: 'json_Plantedareas_0',
+            layerName: 'layer_Plantedareas_0',
+            pane: 'pane_Plantedareas_0',
+            onEachFeature: pop_Plantedareas_0,
+            style: style_Plantedareas_0_0,
         });
-        bounds_group.addLayer(layer_Plantedareas_2);
-        map.addLayer(layer_Plantedareas_2);
-        function pop_HCV5_Drenagem_Buffer5KM_3(feature, layer) {
+        bounds_group.addLayer(layer_Plantedareas_0);
+        map.addLayer(layer_Plantedareas_0);
+        function pop_HCV5_Drenagem_Buffer5KM_1(feature, layer) {
         }
 
-        function style_HCV5_Drenagem_Buffer5KM_3_0() {
+        function style_HCV5_Drenagem_Buffer5KM_1_0() {
             return {
-                pane: 'pane_HCV5_Drenagem_Buffer5KM_3',
+                pane: 'pane_HCV5_Drenagem_Buffer5KM_1',
                 opacity: 1,
                 color: 'rgba(152,125,183,1.0)',
                 dashArray: '',
@@ -166,26 +111,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_HCV5_Drenagem_Buffer5KM_3');
-        map.getPane('pane_HCV5_Drenagem_Buffer5KM_3').style.zIndex = 403;
-        map.getPane('pane_HCV5_Drenagem_Buffer5KM_3').style['mix-blend-mode'] = 'normal';
-        var layer_HCV5_Drenagem_Buffer5KM_3 = new L.geoJson(json_HCV5_Drenagem_Buffer5KM_3, {
+        map.createPane('pane_HCV5_Drenagem_Buffer5KM_1');
+        map.getPane('pane_HCV5_Drenagem_Buffer5KM_1').style.zIndex = 401;
+        map.getPane('pane_HCV5_Drenagem_Buffer5KM_1').style['mix-blend-mode'] = 'normal';
+        var layer_HCV5_Drenagem_Buffer5KM_1 = new L.geoJson(json_HCV5_Drenagem_Buffer5KM_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HCV5_Drenagem_Buffer5KM_3',
-            layerName: 'layer_HCV5_Drenagem_Buffer5KM_3',
-            pane: 'pane_HCV5_Drenagem_Buffer5KM_3',
-            onEachFeature: pop_HCV5_Drenagem_Buffer5KM_3,
-            style: style_HCV5_Drenagem_Buffer5KM_3_0,
+            dataVar: 'json_HCV5_Drenagem_Buffer5KM_1',
+            layerName: 'layer_HCV5_Drenagem_Buffer5KM_1',
+            pane: 'pane_HCV5_Drenagem_Buffer5KM_1',
+            onEachFeature: pop_HCV5_Drenagem_Buffer5KM_1,
+            style: style_HCV5_Drenagem_Buffer5KM_1_0,
         });
-        bounds_group.addLayer(layer_HCV5_Drenagem_Buffer5KM_3);
-        map.addLayer(layer_HCV5_Drenagem_Buffer5KM_3);
-        function pop_HCV5_Drenagem__Rios_Buffer5KM_4(feature, layer) {
+        bounds_group.addLayer(layer_HCV5_Drenagem_Buffer5KM_1);
+        map.addLayer(layer_HCV5_Drenagem_Buffer5KM_1);
+        function pop_HCV5_Drenagem__Rios_Buffer5KM_2(feature, layer) {
         }
 
-        function style_HCV5_Drenagem__Rios_Buffer5KM_4_0() {
+        function style_HCV5_Drenagem__Rios_Buffer5KM_2_0() {
             return {
-                pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_4',
+                pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_2',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -198,21 +143,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_HCV5_Drenagem__Rios_Buffer5KM_4');
-        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_4').style.zIndex = 404;
-        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_4').style['mix-blend-mode'] = 'normal';
-        var layer_HCV5_Drenagem__Rios_Buffer5KM_4 = new L.geoJson(json_HCV5_Drenagem__Rios_Buffer5KM_4, {
+        map.createPane('pane_HCV5_Drenagem__Rios_Buffer5KM_2');
+        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_2').style.zIndex = 402;
+        map.getPane('pane_HCV5_Drenagem__Rios_Buffer5KM_2').style['mix-blend-mode'] = 'normal';
+        var layer_HCV5_Drenagem__Rios_Buffer5KM_2 = new L.geoJson(json_HCV5_Drenagem__Rios_Buffer5KM_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HCV5_Drenagem__Rios_Buffer5KM_4',
-            layerName: 'layer_HCV5_Drenagem__Rios_Buffer5KM_4',
-            pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_4',
-            onEachFeature: pop_HCV5_Drenagem__Rios_Buffer5KM_4,
-            style: style_HCV5_Drenagem__Rios_Buffer5KM_4_0,
+            dataVar: 'json_HCV5_Drenagem__Rios_Buffer5KM_2',
+            layerName: 'layer_HCV5_Drenagem__Rios_Buffer5KM_2',
+            pane: 'pane_HCV5_Drenagem__Rios_Buffer5KM_2',
+            onEachFeature: pop_HCV5_Drenagem__Rios_Buffer5KM_2,
+            style: style_HCV5_Drenagem__Rios_Buffer5KM_2_0,
         });
-        bounds_group.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_4);
-        map.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_4);
-        function pop_HCV1HCV3HCV4_5(feature, layer) {
+        bounds_group.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_2);
+        map.addLayer(layer_HCV5_Drenagem__Rios_Buffer5KM_2);
+        function pop_HCV1HCV3HCV4_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>HCV</strong><br />' + (feature.properties['HCV'] !== null ? autolinker.link(feature.properties['HCV'].toLocaleString()) : '') + '</td>\
@@ -224,11 +169,11 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_HCV1HCV3HCV4_5_0(feature) {
+        function style_HCV1HCV3HCV4_3_0(feature) {
             switch(String(feature.properties['HCV'])) {
                 case 'HCV1, HCV3':
                     return {
-                pane: 'pane_HCV1HCV3HCV4_5',
+                pane: 'pane_HCV1HCV3HCV4_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -243,7 +188,7 @@
                     break;
                 case 'HCV1, HCV3, HCV4':
                     return {
-                pane: 'pane_HCV1HCV3HCV4_5',
+                pane: 'pane_HCV1HCV3HCV4_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -258,26 +203,26 @@
                     break;
             }
         }
-        map.createPane('pane_HCV1HCV3HCV4_5');
-        map.getPane('pane_HCV1HCV3HCV4_5').style.zIndex = 405;
-        map.getPane('pane_HCV1HCV3HCV4_5').style['mix-blend-mode'] = 'normal';
-        var layer_HCV1HCV3HCV4_5 = new L.geoJson(json_HCV1HCV3HCV4_5, {
+        map.createPane('pane_HCV1HCV3HCV4_3');
+        map.getPane('pane_HCV1HCV3HCV4_3').style.zIndex = 403;
+        map.getPane('pane_HCV1HCV3HCV4_3').style['mix-blend-mode'] = 'normal';
+        var layer_HCV1HCV3HCV4_3 = new L.geoJson(json_HCV1HCV3HCV4_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HCV1HCV3HCV4_5',
-            layerName: 'layer_HCV1HCV3HCV4_5',
-            pane: 'pane_HCV1HCV3HCV4_5',
-            onEachFeature: pop_HCV1HCV3HCV4_5,
-            style: style_HCV1HCV3HCV4_5_0,
+            dataVar: 'json_HCV1HCV3HCV4_3',
+            layerName: 'layer_HCV1HCV3HCV4_3',
+            pane: 'pane_HCV1HCV3HCV4_3',
+            onEachFeature: pop_HCV1HCV3HCV4_3,
+            style: style_HCV1HCV3HCV4_3_0,
         });
-        bounds_group.addLayer(layer_HCV1HCV3HCV4_5);
-        map.addLayer(layer_HCV1HCV3HCV4_5);
-        function pop_Concessionboundary_CP2_6(feature, layer) {
+        bounds_group.addLayer(layer_HCV1HCV3HCV4_3);
+        map.addLayer(layer_HCV1HCV3HCV4_3);
+        function pop_Concessionboundary_CP2_4(feature, layer) {
         }
 
-        function style_Concessionboundary_CP2_6_0() {
+        function style_Concessionboundary_CP2_4_0() {
             return {
-                pane: 'pane_Concessionboundary_CP2_6',
+                pane: 'pane_Concessionboundary_CP2_4',
                 opacity: 1,
                 color: 'rgba(228,26,28,1.0)',
                 dashArray: '',
@@ -288,26 +233,26 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Concessionboundary_CP2_6');
-        map.getPane('pane_Concessionboundary_CP2_6').style.zIndex = 406;
-        map.getPane('pane_Concessionboundary_CP2_6').style['mix-blend-mode'] = 'normal';
-        var layer_Concessionboundary_CP2_6 = new L.geoJson(json_Concessionboundary_CP2_6, {
+        map.createPane('pane_Concessionboundary_CP2_4');
+        map.getPane('pane_Concessionboundary_CP2_4').style.zIndex = 404;
+        map.getPane('pane_Concessionboundary_CP2_4').style['mix-blend-mode'] = 'normal';
+        var layer_Concessionboundary_CP2_4 = new L.geoJson(json_Concessionboundary_CP2_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Concessionboundary_CP2_6',
-            layerName: 'layer_Concessionboundary_CP2_6',
-            pane: 'pane_Concessionboundary_CP2_6',
-            onEachFeature: pop_Concessionboundary_CP2_6,
-            style: style_Concessionboundary_CP2_6_0,
+            dataVar: 'json_Concessionboundary_CP2_4',
+            layerName: 'layer_Concessionboundary_CP2_4',
+            pane: 'pane_Concessionboundary_CP2_4',
+            onEachFeature: pop_Concessionboundary_CP2_4,
+            style: style_Concessionboundary_CP2_4_0,
         });
-        bounds_group.addLayer(layer_Concessionboundary_CP2_6);
-        map.addLayer(layer_Concessionboundary_CP2_6);
-        function pop_Concessionboundary_7(feature, layer) {
+        bounds_group.addLayer(layer_Concessionboundary_CP2_4);
+        map.addLayer(layer_Concessionboundary_CP2_4);
+        function pop_Concessionboundary_5(feature, layer) {
         }
 
-        function style_Concessionboundary_7_0() {
+        function style_Concessionboundary_5_0() {
             return {
-                pane: 'pane_Concessionboundary_7',
+                pane: 'pane_Concessionboundary_5',
                 opacity: 1,
                 color: 'rgba(228,26,28,1.0)',
                 dashArray: '',
@@ -318,21 +263,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Concessionboundary_7');
-        map.getPane('pane_Concessionboundary_7').style.zIndex = 407;
-        map.getPane('pane_Concessionboundary_7').style['mix-blend-mode'] = 'normal';
-        var layer_Concessionboundary_7 = new L.geoJson(json_Concessionboundary_7, {
+        map.createPane('pane_Concessionboundary_5');
+        map.getPane('pane_Concessionboundary_5').style.zIndex = 405;
+        map.getPane('pane_Concessionboundary_5').style['mix-blend-mode'] = 'normal';
+        var layer_Concessionboundary_5 = new L.geoJson(json_Concessionboundary_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Concessionboundary_7',
-            layerName: 'layer_Concessionboundary_7',
-            pane: 'pane_Concessionboundary_7',
-            onEachFeature: pop_Concessionboundary_7,
-            style: style_Concessionboundary_7_0,
+            dataVar: 'json_Concessionboundary_5',
+            layerName: 'layer_Concessionboundary_5',
+            pane: 'pane_Concessionboundary_5',
+            onEachFeature: pop_Concessionboundary_5,
+            style: style_Concessionboundary_5_0,
         });
-        bounds_group.addLayer(layer_Concessionboundary_7);
-        map.addLayer(layer_Concessionboundary_7);
-        function pop_Locationofcommunities_8(feature, layer) {
+        bounds_group.addLayer(layer_Concessionboundary_5);
+        map.addLayer(layer_Concessionboundary_5);
+        function pop_Locationofcommunities_6(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
@@ -341,9 +286,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Locationofcommunities_8_0() {
+        function style_Locationofcommunities_6_0() {
             return {
-                pane: 'pane_Locationofcommunities_8',
+                pane: 'pane_Locationofcommunities_6',
                 radius: 4.8,
                 opacity: 1,
                 color: 'rgba(128,17,25,1.0)',
@@ -354,29 +299,29 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(251,255,35,1.0)',
-                interactive: true,
+                interactive: false,
             }
         }
-        map.createPane('pane_Locationofcommunities_8');
-        map.getPane('pane_Locationofcommunities_8').style.zIndex = 408;
-        map.getPane('pane_Locationofcommunities_8').style['mix-blend-mode'] = 'normal';
-        var layer_Locationofcommunities_8 = new L.geoJson(json_Locationofcommunities_8, {
+        map.createPane('pane_Locationofcommunities_6');
+        map.getPane('pane_Locationofcommunities_6').style.zIndex = 406;
+        map.getPane('pane_Locationofcommunities_6').style['mix-blend-mode'] = 'normal';
+        var layer_Locationofcommunities_6 = new L.geoJson(json_Locationofcommunities_6, {
             attribution: '',
-            interactive: true,
-            dataVar: 'json_Locationofcommunities_8',
-            layerName: 'layer_Locationofcommunities_8',
-            pane: 'pane_Locationofcommunities_8',
-            onEachFeature: pop_Locationofcommunities_8,
+            interactive: false,
+            dataVar: 'json_Locationofcommunities_6',
+            layerName: 'layer_Locationofcommunities_6',
+            pane: 'pane_Locationofcommunities_6',
+            onEachFeature: pop_Locationofcommunities_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Locationofcommunities_8_0(feature));
+                return L.circleMarker(latlng, style_Locationofcommunities_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Locationofcommunities_8);
-        map.addLayer(layer_Locationofcommunities_8);
+        bounds_group.addLayer(layer_Locationofcommunities_6);
+        map.addLayer(layer_Locationofcommunities_6);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -388,148 +333,8 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Locationofcommunities_8.png" /> Location of communities': layer_Locationofcommunities_8,'<img src="legend/Concessionboundary_7.png" /> Concession boundary': layer_Concessionboundary_7,'<img src="legend/Concessionboundary_CP2_6.png" /> Concession boundary_CP2': layer_Concessionboundary_CP2_6,'HCV 1, HCV 3, HCV 4<br /><table><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_5_HCV1HCV30.png" /></td><td>HCV1, HCV3</td></tr><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_5_HCV1HCV3HCV41.png" /></td><td>HCV1, HCV3, HCV4</td></tr></table>': layer_HCV1HCV3HCV4_5,'<img src="legend/HCV5_Drenagem__Rios_Buffer5KM_4.png" /> HCV5_Drenagem__Rios_Buffer5KM': layer_HCV5_Drenagem__Rios_Buffer5KM_4,'<img src="legend/HCV5_Drenagem_Buffer5KM_3.png" /> HCV5_Drenagem_Buffer5KM': layer_HCV5_Drenagem_Buffer5KM_3,'<img src="legend/Plantedareas_2.png" /> Planted areas': layer_Plantedareas_2,'<img src="legend/AmazonBiome_1.png" /> Amazon Biome': layer_AmazonBiome_1,"ESRI World Imagery": layer_ESRIWorldImagery_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Locationofcommunities_6.png" /> Location of communities': layer_Locationofcommunities_6,'<img src="legend/Concessionboundary_5.png" /> Concession boundary': layer_Concessionboundary_5,'<img src="legend/Concessionboundary_CP2_4.png" /> Concession boundary_CP2': layer_Concessionboundary_CP2_4,'HCV 1, HCV 3, HCV 4<br /><table><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_3_HCV1HCV30.png" /></td><td>HCV1, HCV3</td></tr><tr><td style="text-align: center;"><img src="legend/HCV1HCV3HCV4_3_HCV1HCV3HCV41.png" /></td><td>HCV1, HCV3, HCV4</td></tr></table>': layer_HCV1HCV3HCV4_3,'<img src="legend/HCV5_Drenagem__Rios_Buffer5KM_2.png" /> HCV5_Drenagem__Rios_Buffer5KM': layer_HCV5_Drenagem__Rios_Buffer5KM_2,'<img src="legend/HCV5_Drenagem_Buffer5KM_1.png" /> HCV5_Drenagem_Buffer5KM': layer_HCV5_Drenagem_Buffer5KM_1,'<img src="legend/Plantedareas_0.png" /> Planted areas': layer_Plantedareas_0,},{collapsed:false}).addTo(map);
         setBounds();
-        var mapDiv = document.getElementById('map');
-        var row = document.createElement('div');
-        row.className="row";
-        row.id="all";
-        row.style.height = "100%";
-        var col1 = document.createElement('div');
-        col1.className="col9";
-        col1.id = "mapWindow";
-        col1.style.height = "99%";
-        col1.style.width = "80%";
-        col1.style.display = "inline-block";
-        var col2 = document.createElement('div');
-        col2.className="col3";
-        col2.id = "menu";
-        col2.style.display = "inline-block";
-        mapDiv.parentNode.insertBefore(row, mapDiv);
-        document.getElementById("all").appendChild(col1);
-        document.getElementById("all").appendChild(col2);
-        col1.appendChild(mapDiv)
-        var Filters = {"HCV": "str"};
-        function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
-            features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
-                  var selection = [];
-                  var options = document.getElementById("sel_" + keyS).options
-                  for (var i=0; i < options.length; i++) {
-                    if (options[i].selected) selection.push(options[i].value);
-                  }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                  }
-                }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
-                        }
-                      }
-                    }
-                  } catch(err){
-                  }
-                }
-              }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
-          }
-          })
-        }
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_HCV = document.createElement('div');
-            div_HCV.id = "div_HCV";
-            div_HCV.className= "filterselect";
-            document.getElementById("menu").appendChild(div_HCV);
-            sel_HCV = document.createElement('select');
-            sel_HCV.multiple = true;
-            sel_HCV.size = 2;
-            sel_HCV.id = "sel_HCV";
-            var HCV_options_str = "<option value='' unselected></option>";
-            sel_HCV.onchange = function(){filterFunc()};
-            HCV_options_str  += '<option value="HCV1, HCV3">HCV1, HCV3</option>';
-            HCV_options_str  += '<option value="HCV1, HCV3, HCV4">HCV1, HCV3, HCV4</option>';
-            sel_HCV.innerHTML = HCV_options_str;
-            div_HCV.appendChild(sel_HCV);
-            var lab_HCV = document.createElement('div');
-            lab_HCV.innerHTML = 'HCV';
-            lab_HCV.className = 'filterlabel';
-            div_HCV.appendChild(lab_HCV);
-            var reset_HCV = document.createElement('div');
-            reset_HCV.innerHTML = 'clear filter';
-            reset_HCV.className = 'filterlabel';
-            reset_HCV.onclick = function() {
-                var options = document.getElementById("sel_HCV").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_HCV.appendChild(reset_HCV);
         </script>
     </body>
 </html>
